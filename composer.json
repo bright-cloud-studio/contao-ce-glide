@@ -1,0 +1,41 @@
+{
+    "name":"bright-cloud-studio/contao-ce-glide",
+    "description":"Integrates the Glide.js slider into Contao using custom Content Elements",
+    "keywords": ["contao", "content element", "glide", "bright", "cloud", "studio"],
+    "type": "contao-bundle",
+    "homepage": "http://brightcloudstudio.com/",
+    "license": "LGPL-3.0+",
+    "authors":[
+        {
+            "name": "Bright Cloud Studio",
+            "homepage": "https://brightcloudstudio.com",
+            "email": "mark@brightcloudstudio.com",
+            "role": "Developer"
+        }
+    ],
+    "support":{
+        "issues": "https://github.com/bright-cloud-studio/contao-ce-glide/issues",
+        "source": "https://github.com/bright-cloud-studio/contao-ce-glide"
+    },
+    "require":{
+        "php": "^7.4 || ^8.0",
+        "contao/core-bundle": "^4.13"
+    },
+    "extra":{
+        "contao-manager-plugin": "Bcs\\GlideBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcs\\HeroTextBundle\\": "src"
+        },
+        "classmap": [
+            "src/Resources/contao"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]
+    }
+}
