@@ -1,0 +1,7 @@
+<?php
+  // Add the Glide.js Stylesheets
+  $GLOBALS['TL_CSS'][] = 'assets/glide/css/glide.core.css|static';
+  $GLOBALS['TL_CSS'][] = 'assets/glide/css/glide.theme.css|static';
+?>
+
+<script src="<?= $this->asset('js/glide.min.js', 'contao-components/glide') ?>"></script>
