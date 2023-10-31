@@ -10,14 +10,14 @@
 
 namespace Bcs\GlideBundle;
 
-class ContentGlide extends \ContentText
+class ContentGlideStart extends \ContentText
 {
 
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_glide';
+	protected $strTemplate = 'ce_glide_start';
 
 
 	/**
