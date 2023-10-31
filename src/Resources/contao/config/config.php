@@ -15,8 +15,8 @@
     ));
 
 
-$GLOBALS['TL_WRAPPERS']['start'][] = 'ContentGlideStart';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'ContentGlideStop';
+$GLOBALS['TL_WRAPPERS']['start'][] = 'glide_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'glide_stop';
 
 
 
