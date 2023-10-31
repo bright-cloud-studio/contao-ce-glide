@@ -8,8 +8,11 @@
    * @see	       https://github.com/bright-cloud-studio/contao-ce-glide
    */
 
-    $GLOBALS['TL_LANG']['CTE']['glide'] = 'Glide.js';
-    $GLOBALS['TL_LANG']['CTE']['glide'][0] = 'GlideTest';
-    $GLOBALS['TL_LANG']['CTE']['glide'][1] = 'Testing this thing out';
+    $GLOBALS['TL_LANG']['CTE']['glide'] = 'Glide Slider';
+    $GLOBALS['TL_LANG']['CTE']['glide_start'][0] = 'Glide Start';
+    $GLOBALS['TL_LANG']['CTE']['glide_start'][1] = 'Starting wrapper for the Glide slider';
+
+    $GLOBALS['TL_LANG']['CTE']['glide_stop'][0] = 'Glide Stop';
+    $GLOBALS['TL_LANG']['CTE']['glide_stop'][1] = 'End of wrapper for the Glide slider';
 
 ?>
