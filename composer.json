@@ -19,7 +19,8 @@
     },
     "require":{
         "php": "^7.4 || ^8.0",
-        "contao/core-bundle": "^4.13"
+        "contao/core-bundle": "^4.13",
+        "bright-cloud-studio/glide": "^1.0"
     },
     "extra":{
         "contao-manager-plugin": "Bcs\\GlideBundle\\ContaoManager\\Plugin"
