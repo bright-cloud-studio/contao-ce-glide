@@ -14,4 +14,12 @@
         'glide_stop' => 'Bcs\GlideBundle\ContentGlideStop'
     ));
 
+
+$GLOBALS['TL_WRAPPERS']['start'][] = 'ContentGlideStart';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'ContentGlideStop';
+
+
+
+
+
 ?>
