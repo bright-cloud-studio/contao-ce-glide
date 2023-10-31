@@ -8,7 +8,8 @@
    * @see	       https://github.com/bright-cloud-studio/contao-ce-glide
    */
 
-  $GLOBALS['TL_LANG']['CTE']['glide'][0] = 'GlideTest';
-  $GLOBALS['TL_LANG']['CTE']['glide'][1] = 'Testing this thing out';
+    $GLOBALS['TL_LANG']['CTE']['glide'] = 'Glide.js';
+    $GLOBALS['TL_LANG']['CTE']['glide'][0] = 'GlideTest';
+    $GLOBALS['TL_LANG']['CTE']['glide'][1] = 'Testing this thing out';
 
 ?>
