@@ -11,7 +11,7 @@
 // Get our default 'tl_content' DCA
 $dc = &$GLOBALS['TL_DCA']['tl_content'];
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['glide_start'] = '{type_legend},type,headline;{glide_legend},glide_type,starting_slide,slides_to_show,slide_padding,autoplay,pause_on_hover,ani_duration;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['glide_start'] = '{type_legend},type,headline;{glide_legend},glide_type,starting_slide,slides_to_show,slide_padding,autoplay,pause_on_hover,ani_duration,keyboard,peek;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_stop'] = '{type_legend},type;{template_legend:hide},customTpl;{protected_legend:hide},protected;{invisible_legend:hide},invisible,start,stop';
     
 $arrFields = array(
@@ -59,7 +59,20 @@ $arrFields = array(
         'inputType'                => 'text',
 		'eval'                     => array('tl_class'=>'w50'),
 		'sql'                      => "varchar(12) NOT NULL default ''"
-    )
+    ),
+    'keyboard'                => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['keyboard'],
+        'inputType'                => 'select',
+		'options'                  => array('true' => 'True', 'false' => 'False'),
+		'eval'                     => array('mandatory'=>true, 'tl_class'=>'w50'),
+		'sql'                      => "varchar(32) NOT NULL default 'true'"
+    ),
+    'peek'            => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['peek'],
+        'inputType'                => 'text',
+		'eval'                     => array('tl_class'=>'w50'),
+		'sql'                      => "varchar(12) NOT NULL default ''"
+    ),
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
