@@ -1,7 +1,26 @@
 <?php
   // Add the Glide.js Stylesheets
-  $GLOBALS['TL_CSS'][] = 'assets/glide/css/glide.core.css|static';
-  $GLOBALS['TL_CSS'][] = 'assets/glide/css/glide.theme.css|static';
+  $GLOBALS['TL_CSS'][] = 'assets/glide/css/glide.core.css';
 ?>
 
-<script src="<?= $this->asset('js/glide.min.js', 'contao-components/glide') ?>"></script>
+<script src="assets/glide/js/glide.min.js"></script>
+<script>
+	$(document).ready(function(){
+		const api = new Glide('.glide', {
+			type: 'carousel',
+			startAt: 0,
+			perView: 3,
+			gap: 50,
+			autoplay: false,
+		}).mount();
+		
+		// Fix for slides not going full width on initial load
+		if (document.readyState !== 'complete') {
+			document.addEventListener('readystatechange', () => {
+				if (document.readyState === 'complete') {
+					api.update();
+				}
+			});
+		}
+	});
+</script>
