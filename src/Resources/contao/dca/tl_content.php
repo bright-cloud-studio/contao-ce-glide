@@ -39,7 +39,7 @@ $arrFields = array(
         'inputType'                => 'text',
 		'eval'                     => array('tl_class'=>'w50'),
 		'sql'                      => "varchar(12) NOT NULL default ''"
-    )
+    ),
     'autoplay'                => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_content']['autoplay'],
         'inputType'                => 'select',
