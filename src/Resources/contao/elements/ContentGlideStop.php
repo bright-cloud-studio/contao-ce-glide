@@ -25,6 +25,16 @@ class ContentGlideStop extends \ContentText
 	 */
 	public function compile()
 	{
-		parent::compile();
+		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
+
+		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+		{
+			$this->strTemplate = 'be_wildcard';
+			$this->Template = new BackendTemplate($this->strTemplate);
+		}
+
+		// Previous and next labels
+		$this->Template->previous = $GLOBALS['TL_LANG']['MSC']['previous'];
+		$this->Template->next = $GLOBALS['TL_LANG']['MSC']['next'];
 	}
 }
