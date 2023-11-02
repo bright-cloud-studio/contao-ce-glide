@@ -6,21 +6,41 @@
 <script src="assets/glide/js/glide.min.js"></script>
 <script>
 	$(document).ready(function(){
-		const api = new Glide('.glide', {
-			type: 'carousel',
-			startAt: 0,
-			perView: 3,
-			gap: 50,
-			autoplay: false,
-		}).mount();
-		
-		// Fix for slides not going full width on initial load
-		if (document.readyState !== 'complete') {
-			document.addEventListener('readystatechange', () => {
-				if (document.readyState === 'complete') {
-					api.update();
+		(function() {
+			var e = document.querySelectorAll('.glide');
+			for (i=0; i<e.length; i+=2) {
+				c = e[i].getAttribute('data-config').split(',');
+
+				var configAutoPlay;
+				if(c[4] == "false"){configAutoPlay = false;}else{configAutoPlay = c[4];}
+				
+				var configPauseOnHover;
+				if(c[5] == "false"){configPauseOnHover = false;}else{configPauseOnHover = c[5];}
+				
+				var configKeyboard;
+				if(c[7] == "false"){configKeyboard = false;}else{configKeyboard = c[7];}
+				
+				const api = new Glide('.glide', {
+					type: c[0],
+					startAt: parseInt(c[1]),
+					perView: parseInt(c[2]),
+					gap: parseInt(c[3]),
+					autoplay: configAutoPlay,
+					hoverpause: configPauseOnHover,
+					animationDuration: parseInt(c[6]),
+					keyboard: configKeyboard,
+					peek: parseInt(c[8])
+				}).mount();
+				
+				// Fix for slides not going full width on initial load
+				if (document.readyState !== 'complete') {
+					document.addEventListener('readystatechange', () => {
+						if (document.readyState === 'complete') {
+							api.update();
+						}
+					});
 				}
-			});
-		}
+			}
+		})();
 	});
 </script>
