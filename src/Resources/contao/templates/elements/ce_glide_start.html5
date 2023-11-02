@@ -1,4 +1,9 @@
 <div class="ce_glide_wrapper ce_glide_start">
+
+	<?php if ($this->headline): ?>
+		<<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>
+	<?php endif; ?>
+
 	<div class="glide" data-config="<?= $this->config ?>">
 		<div class="glide__track" data-glide-el="track">
 			<div class="glide__slides">
