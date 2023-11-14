@@ -18,12 +18,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 	/* Generate the content element */
 	public function compile()
 	{
-        $result = parent::generate();
-
-        if (empty($result)) {
-            return '';
-        }
-
+        parent::generate();
         $this->Template->thumbnails = 'test';
 
         // Slider configuration
