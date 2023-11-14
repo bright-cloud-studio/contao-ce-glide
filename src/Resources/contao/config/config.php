@@ -11,7 +11,8 @@
    array_insert($GLOBALS['TL_CTE']['glide'], -1, array
     (
         'glide_start' => 'Bcs\GlideBundle\ContentGlideStart',
-        'glide_stop' => 'Bcs\GlideBundle\ContentGlideStop'
+        'glide_stop' => 'Bcs\GlideBundle\ContentGlideStop',
+        'glide_gallery' => 'Bcs\GlideBundle\ContentGlideGallery'
     ));
 
 
