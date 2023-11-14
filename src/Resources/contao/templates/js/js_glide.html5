@@ -5,21 +5,20 @@
 
 <script src="assets/glide/js/glide.min.js"></script>
 <script>
-	// When the page is fully loaded
 	$(document).ready(function(){
-		// Get all of the '.glide' wrappers on the page then loop through them
-		const sliders = document.querySelectorAll('.glide')
+
+		const sliders = document.querySelectorAll('.ce_glide_wrapper .glide')
 		sliders.forEach(item => {
-			// get the 'data-config' information from the '.glide' wrapper then split by commas into an array
+			
 			c = item.getAttribute('data-config').split(',');
-			// turn into boolean
+			
 			var configAutoPlay;
 			if(c[4] == "false"){configAutoPlay = false;}else{configAutoPlay = c[4];}
 			var configPauseOnHover;
 			if(c[5] == "false"){configPauseOnHover = false;}else{configPauseOnHover = c[5];}
-			var configKeyboard
+			var configKeyboard;
 			if(c[7] == "false"){configKeyboard = false;}else{configKeyboard = c[7];}
-			// Mount our gallery using the config values
+			
 			const api = new Glide(item, {
 				type: c[0],
 				startAt: parseInt(c[1]),
@@ -39,8 +38,10 @@
 					}
 				}
 			}).mount();
+			
 			// Fix for slides not going full width on initial load
-			// Not sure if still needed, will disable after Bob fixes overflow issues
+			// Uncomment this block if your having issues with slide widths, it may help.
+			/*
 			if (document.readyState !== 'complete') {
 				document.addEventListener('readystatechange', () => {
 					if (document.readyState === 'complete') {
@@ -48,6 +49,8 @@
 					}
 				});
 			}
+			*/
 		})
+
 	});
 </script>
