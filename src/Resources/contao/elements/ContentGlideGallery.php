@@ -24,7 +24,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
             return '';
         }
 
-        $this->Template->thumbnails = $result->$images;
+        $this->Template->thumbnails = 'test';
 
         // Slider configuration
 		$this->Template->config = $this->glide_type . ',' . $this->starting_slide . ',' . $this->slides_to_show . ',' . $this->slide_padding . ',' . $this->autoplay . ',' . $this->pause_on_hover . ',' . $this->ani_duration . ',' . $this->keyboard . ',' . $this->peek;
