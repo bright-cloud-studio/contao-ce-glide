@@ -18,22 +18,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 	/* Generate the content element */
 	public function compile()
 	{
-	    
-	    /*
-        parent::compile();
-        
-        
-        $objTemplate = new \FrontendTemplate($this->thumbTpl ?: 'gallery_glide_thumbnails');
-		$objTemplate->setData($this->arrData);
-		$objTemplate->body = $body;
-		$objTemplate->headline = $this->headline; // see #1603
 
-		$this->Template->thumbs = $objTemplate->parse();
-		
-		*/
-
-        
-        
         $images = array();
 		$projectDir = \System::getContainer()->getParameter('kernel.project_dir');
 
@@ -138,39 +123,17 @@ class ContentGlideGallery extends \Contao\ContentGallery
 
 		$images = array_values($images);
 
-		// Limit the total number of items (see #2652)
-		if ($this->numberOfItems > 0)
-		{
-			$images = \array_slice($images, 0, $this->numberOfItems);
-		}
+
 
 		$offset = 0;
 		$total = \count($images);
 		$limit = $total;
 
-		// Paginate the result of not randomly sorted (see #8033)
-		if ($this->perPage > 0 && $this->sortBy != 'random')
-		{
-			// Get the current page
-			$id = 'page_g' . $this->id;
-			$page = (int) (Input::get($id) ?? 1);
 
-			// Do not index or cache the page if the page number is outside the range
-			if ($page < 1 || $page > max(ceil($total/$this->perPage), 1))
-			{
-				throw new PageNotFoundException('Page not found: ' . Environment::get('uri'));
-			}
-
-			// Set limit and offset
-			$offset = ($page - 1) * $this->perPage;
-			$limit = min($this->perPage + $offset, $total);
-
-			$objPagination = new Pagination($total, $this->perPage, Config::get('maxPaginationLinks'), $id);
-			$this->Template->pagination = $objPagination->generate("\n  ");
-		}
 
 		$colwidth = floor(100/$this->perRow);
 		$body = array();
+		$bodyThumbs = array();
 
 		$figureBuilder = \System::getContainer()
 			->get('contao.image.studio')
@@ -178,8 +141,18 @@ class ContentGlideGallery extends \Contao\ContentGallery
 			->setSize($this->size)
 			->setLightboxGroupIdentifier('lb' . $this->id)
 			->enableLightbox($this->fullsize);
+			
+		$figureBuilderThumb = \System::getContainer()
+			->get('contao.image.studio')
+			->createFigureBuilder()
+			->setSize($this->thumb_size)
+			->setLightboxGroupIdentifier('lb' . $this->id)
+			->enableLightbox($this->fullsize);
 
+
+        
 		// Rows
+		/*
 		for ($i=$offset; $i<$limit; $i+=$this->perRow)
 		{
 			// Columns
@@ -194,6 +167,14 @@ class ContentGlideGallery extends \Contao\ContentGallery
 
 					$cellData = $figure->getLegacyTemplateData();
 					$cellData['figure'] = $figure;
+					
+					$figureThumb = $figureBuilderThumb
+						->fromId($image['id'])
+						->build();
+
+					$cellDataThumb = $figureThumb->getLegacyTemplateData();
+					$cellDataThumb['figure'] = $figureThumb;
+					
 				}
 				else
 				{
@@ -204,8 +185,29 @@ class ContentGlideGallery extends \Contao\ContentGallery
 				$cellData['colWidth'] = $colwidth . '%';
 
 				$body[$i][$j] = (object) $cellData;
+				$bodyThumbs[$i][$j] = (object) $cellDataThumb;
 			}
 		}
+		*/
+		
+		foreach($images as $im) {
+		    $figure = $figureBuilder
+						->fromId($im['id'])
+						->build();
+			$cellData = $figure->getLegacyTemplateData();
+			$cellData['figure'] = $figure;
+		    $body[] = (object) $cellData;
+		    
+		    $figureThumb = $figureBuilderThumb
+						->fromId($im['id'])
+						->build();
+			$cellDataThumb = $figureThumb->getLegacyTemplateData();
+			$cellDataThumb['figure'] = $figureThumb;
+			$bodyThumbs[] = (object) $cellData;
+		    
+		}
+		$this->Template->tst = $bdy;
+		
 
 		$request = \System::getContainer()->get('request_stack')->getCurrentRequest();
 
@@ -213,21 +215,20 @@ class ContentGlideGallery extends \Contao\ContentGallery
 		if ($request && \System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
 			$this->galleryTpl = '';
+			$this->thumbTpl = '';
 		}
 
 		$objTemplate = new \FrontendTemplate($this->galleryTpl ?: 'gallery_default');
 		$objTemplate->setData($this->arrData);
 		$objTemplate->body = $body;
 		$objTemplate->headline = $this->headline; // see #1603
-
 		$this->Template->images = $objTemplate->parse();
 		
 		
 		$objTemplate = new \FrontendTemplate($this->thumbTpl ?: 'gallery_glide_thumbnails');
 		$objTemplate->setData($this->arrData);
-		$objTemplate->body = $body;
+		$objTemplate->body = $bodyThumbs;
 		$objTemplate->headline = $this->headline; // see #1603
-
 		$this->Template->thumbnails = $objTemplate->parse();
         
         
