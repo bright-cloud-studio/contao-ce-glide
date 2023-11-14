@@ -91,7 +91,7 @@ $dc['fields'] = array_merge($dc['fields'], $arrFields);
 
 
 
-public function setMultiSrcFlags($varValue, DataContainer $dc)
+function setMultiSrcFlags($varValue, DataContainer $dc)
 {
     if ($dc->activeRecord)
     {
