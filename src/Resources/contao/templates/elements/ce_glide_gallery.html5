@@ -1,4 +1,4 @@
-<div class="ce_glide_wrapper ce_glide_start">
+<div class="ce_glide_wrapper ce_glide_gallery">
 	<div class="glide" data-config="<?= $this->config ?>">
 		
 		<div class="header_wrapper">
