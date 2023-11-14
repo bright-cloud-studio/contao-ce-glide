@@ -84,6 +84,10 @@ $arrFields = array(
         'label'                   => &$GLOBALS['TL_LANG']['MSC']['thumb_size'],
         'inputType'               => 'imageSize',
         'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+        'options_callback' => static function ()
+        {
+            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+        },
         'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
         'sql'                     => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
     ),
