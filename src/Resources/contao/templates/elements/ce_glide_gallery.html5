@@ -1,0 +1,26 @@
+<div class="ce_glide_wrapper ce_glide_start">
+	<div class="glide" data-config="<?= $this->config ?>">
+		
+		<div class="header_wrapper">
+			
+			<?php if ($this->headline): ?>
+				<<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>
+			<?php endif; ?>
+			<div class="controls_wrapper">
+			<div class="glide__arrows" data-glide-el="controls">
+				
+				<button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fa-sharp fa-light fa-chevron-left"></i></button>
+				<button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fa-sharp fa-light fa-chevron-right"></i></button>
+		
+			</div>
+				</div>
+		</div>
+		
+		
+		<div class="glide__track" data-glide-el="track">
+			<div class="glide__slides">
+          SLIDES HERE
+      </div> <!-- End Slides Wrapper -->
+    </div> <!-- End Track -->
+	</div>
+</div> <!-- End Glide Wrapper -->
