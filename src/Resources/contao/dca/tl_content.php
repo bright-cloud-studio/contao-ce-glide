@@ -68,12 +68,42 @@ $arrFields = array(
 		'eval'                     => array('mandatory'=>true, 'tl_class'=>'w50'),
 		'sql'                      => "varchar(32) NOT NULL default 'true'"
     ),
-    'peek'            => array(
+    'peek'                    => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_content']['peek'],
         'inputType'                => 'text',
 		'eval'                     => array('tl_class'=>'w50'),
 		'sql'                      => "varchar(12) NOT NULL default ''"
     ),
+    'multiSRC'                => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
+        'inputType'                => 'fileTree',
+		'eval'                     => array('multiple'=>true, 'fieldType'=>'checkbox', 'isSortable' => true, 'files'=>true),
+        'sql'                      => "blob NULL",
+        'load_callback' => array
+        (
+            array('tl_content', 'setMultiSrcFlags')
+        )
+    ),
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
+
+
+
+
+public function setMultiSrcFlags($varValue, DataContainer $dc)
+{
+    if ($dc->activeRecord)
+    {
+        switch ($dc->activeRecord->type)
+        {
+            case 'gallery':
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = '%contao.image.valid_extensions%';
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['mandatory'] = !$dc->activeRecord->useHomeDir;
+                break;
+        }
+    }
+
+    return $varValue;
+}
