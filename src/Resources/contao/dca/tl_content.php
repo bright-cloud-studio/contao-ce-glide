@@ -100,9 +100,36 @@ $arrFields = array(
         'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
         'sql'                     => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
     ),
-    'multiSRC'                => array(
-        'eval'                    => array('isGallery'=>true)
+    'multiSRC' => array
+    (
+        'inputType'               => 'fileTree',
+        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'isSortable' => true, 'files'=>true),
+        'sql'                     => "blob NULL",
+        'load_callback' => array
+        (
+            array('tl_content', 'setMultiSrcFlags')
+        )
     ),
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
+
+
+
+
+function setMultiSrcFlags($varValue, DataContainer $dc)
+{
+    if ($dc->activeRecord)
+    {
+        switch ($dc->activeRecord->type)
+        {
+            case 'gallery':
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = '%contao.image.valid_extensions%';
+                $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['mandatory'] = !$dc->activeRecord->useHomeDir;
+                break;
+        }
+    }
+
+    return $varValue;
+}
