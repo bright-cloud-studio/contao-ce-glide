@@ -203,7 +203,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 						->build();
 			$cellDataThumb = $figureThumb->getLegacyTemplateData();
 			$cellDataThumb['figure'] = $figureThumb;
-			$bodyThumbs[] = (object) $cellData;
+			$bodyThumbs[] = (object) $cellDataThumb;
 		    
 		}
 		$this->Template->tst = $bdy;
