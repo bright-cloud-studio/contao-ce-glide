@@ -18,9 +18,6 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_stop'] = '{type_legend},type
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_gallery'] = '{type_legend},type,headline;{source_legend},multiSRC,useHomeDir,sortBy,metaIgnore;{image_legend},size,thumb_size,fullsize;{glide_legend},glide_type,autoplay,slides_to_show,starting_slide,slide_padding,peek,pause_on_hover,ani_duration,keyboard;{template_legend:hide},galleryTpl,thumb_template,customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 
-$dc['fields'][multiSRC]['eval']['isGallery'] = true;
-$dc['fields'][multiSRC]['eval']['extensions'] = '%contao.image.valid_extensions%';
-
 
 
 $arrFields = array(
@@ -102,6 +99,9 @@ $arrFields = array(
         },
         'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
         'sql'                     => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
+    ),
+    'multiSRC'                => array(
+        'eval'                    => array('isGallery'=>true)
     ),
 );
 
