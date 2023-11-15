@@ -1,9 +1,11 @@
 # Bright Cloud Studio's Contao Content Element - Glide.js
 Integrates the Glide.js slider into Contao using custom Content Elements
 
-
 ## Goal
 The goal of this package is to integrate the Glide.js slider into Contao as seamlessly as possible. As we have a client that wants this package, I am using it as an opportunity to learn more about Contao and how it works behind the scenes. As part of this, I am adding Glide.js to Contao as new Content Elements.
+
+## Additions
+This package adds three new Content Elements to Contao. Two are Wrappers, Glide Start and Glide Stop. The other is a customized Gallery called Glide Gallery.
 
 ## How to Use
 1. Install this package.
