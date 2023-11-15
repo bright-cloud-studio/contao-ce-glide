@@ -113,7 +113,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 				break;
 
 			case 'custom':
-				$images = ArrayUtil::sortByOrderField($images, $this->orderSRC);
+				$images = \ArrayUtil::sortByOrderField($images, $this->orderSRC);
 				break;
 
 			case 'random':
