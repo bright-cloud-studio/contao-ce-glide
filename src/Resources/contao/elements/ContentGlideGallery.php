@@ -113,36 +113,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 				break;
 
 			case 'custom':
-				if ($this->orderSRC != '')
-				{
-					$tmp = deserialize($this->orderSRC);
-
-					if (!empty($tmp) && is_array($tmp))
-					{
-						// Remove all values
-						$arrOrder = array_map(function () {}, array_flip($tmp));
-
-						// Move the matching elements to their position in $arrOrder
-						foreach ($images as $k=>$v)
-						{
-							if (array_key_exists($v['uuid'], $arrOrder))
-							{
-								$arrOrder[$v['uuid']] = $v;
-								unset($images[$k]);
-							}
-						}
-
-						// Append the left-over images at the end
-						if (!empty($images))
-						{
-							$arrOrder = array_merge($arrOrder, array_values($images));
-						}
-
-						// Remove empty (unreplaced) entries
-						$images = array_values(array_filter($arrOrder));
-						unset($arrOrder);
-					}
-				}
+				$images = ArrayUtil::sortByOrderField($images, $this->orderSRC);
 				break;
 
 			case 'random':
