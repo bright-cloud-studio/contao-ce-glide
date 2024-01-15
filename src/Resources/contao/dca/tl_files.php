@@ -24,3 +24,14 @@ $arrFields = array(
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
+
+
+class tl_files extends Backend
+{
+
+    public function addBreadcrumb()
+	{
+		Backend::addFilesBreadcrumb();
+	}
+
+}
