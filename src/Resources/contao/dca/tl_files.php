@@ -34,4 +34,33 @@ class tl_files_bcs extends tl_files
 		parent::__construct();
 	}
 
+    public function adjustPalettes(DataContainer $dc)
+	{
+		if (!$dc->id)
+		{
+			return;
+		}
+
+		$projectDir = System::getContainer()->getParameter('kernel.project_dir');
+		$blnIsFolder = is_dir($projectDir . '/' . $dc->id);
+
+		// Remove the metadata when editing folders
+		if ($blnIsFolder)
+		{
+			PaletteManipulator::create()
+				->removeField('meta')
+				->applyToPalette('default', $dc->table)
+			;
+		}
+
+		// Only show the important part fields for images
+		if ($blnIsFolder || !in_array(strtolower(substr($dc->id, strrpos($dc->id, '.') + 1)), System::getContainer()->getParameter('contao.image.valid_extensions')))
+		{
+			PaletteManipulator::create()
+				->removeField(array('importantPartX', 'importantPartY', 'importantPartWidth', 'importantPartHeight', 'gallery_number"))
+				->applyToPalette('default', $dc->table)
+			;
+		}
+	}
+
 }
