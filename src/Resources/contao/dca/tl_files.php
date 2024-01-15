@@ -26,12 +26,12 @@ $arrFields = array(
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
 
 
-class tl_files extends Backend
+class tl_files_bcs extends tl_files
 {
 
-    public function addBreadcrumb()
+    public function __construct()
 	{
-		Backend::addFilesBreadcrumb();
+		parent::__construct();
 	}
 
 }
