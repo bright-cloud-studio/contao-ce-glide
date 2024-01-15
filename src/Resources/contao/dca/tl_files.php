@@ -57,7 +57,7 @@ class tl_files_bcs extends tl_files
 		if ($blnIsFolder || !in_array(strtolower(substr($dc->id, strrpos($dc->id, '.') + 1)), System::getContainer()->getParameter('contao.image.valid_extensions')))
 		{
 			PaletteManipulator::create()
-				->removeField(array('importantPartX', 'importantPartY', 'importantPartWidth', 'importantPartHeight', 'gallery_number"))
+				->removeField(array('importantPartX', 'importantPartY', 'importantPartWidth', 'importantPartHeight', 'gallery_number'))
 				->applyToPalette('default', $dc->table)
 			;
 		}
