@@ -19,13 +19,13 @@ $arrFields = array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_name'],
         'inputType'                => 'text',
         'eval'                     => array('tl_class'=>'w50'),
-        'sql'                      => "varchar(12) NOT NULL default ''"
+        'sql'                      => "varchar(255) BINARY NOT NULL default ''"
     ),
     'glide_number'            => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_number'],
         'inputType'                => 'text',
         'eval'                     => array('tl_class'=>'w50'),
-        'sql'                      => "varchar(12) NOT NULL default ''"
+        'sql'                      => "varchar(255) BINARY NOT NULL default ''"
     ),
     'glide_new'            => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_new'],
