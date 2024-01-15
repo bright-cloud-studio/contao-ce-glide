@@ -12,7 +12,7 @@ use Contao\Controller;
 
 // Get our default 'tl_content' DCA
 $dc = &$GLOBALS['TL_DCA']['tl_files'];
-$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = 'name,gallery_number,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta';
+$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = 'name,glide_number,glide_name,glide_new,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta';
 
 $arrFields = array(
     'glide_name'            => array(
