@@ -31,7 +31,7 @@ $arrFields = array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_new'],
         'inputType'                => 'radio',
         'options'                  => array('yes' => 'Yes', 'no' => 'No'),
-        'eval'                     => array('mandatory'=>true, 'tl_class'=>'w50'),
+        'eval'                     => array('tl_class'=>'w50'),
         'sql'                      => "varchar(32) NOT NULL default ''"
     )
 );
