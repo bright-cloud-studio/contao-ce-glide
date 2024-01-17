@@ -197,6 +197,9 @@ class ContentGlideGallery extends \Contao\ContentGallery
 						->build();
 			$cellData = $figure->getLegacyTemplateData();
 			$cellData['figure'] = $figure;
+			$cellData['glide_name'] = $im['glide_name'];
+			$cellData['glide_number'] = $im['glide_number'];
+			$cellData['glide_new'] = $im['glide_new'];
 		    $body[] = (object) $cellData;
 		    
 		    $figureThumb = $figureBuilderThumb
@@ -204,6 +207,9 @@ class ContentGlideGallery extends \Contao\ContentGallery
 						->build();
 			$cellDataThumb = $figureThumb->getLegacyTemplateData();
 			$cellDataThumb['figure'] = $figureThumb;
+			$cellDataThumb['glide_name'] = $im['glide_name'];
+			$cellDataThumb['glide_number'] = $im['glide_number'];
+			$cellDataThumb['glide_new'] = $im['glide_new'];
 			$bodyThumbs[] = (object) $cellDataThumb;
 		    
 		}
