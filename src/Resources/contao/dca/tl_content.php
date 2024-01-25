@@ -100,6 +100,13 @@ $arrFields = array(
         },
         'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
         'sql'                     => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
+    ),
+    'multiSRC' => array
+    (
+        'load_callback' => array
+        (
+            array('tl_content_bcs', 'setMultiSrcFlags')
+        )
     )
 );
 
@@ -119,9 +126,8 @@ class tl_content_bcs extends tl_content
 					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
 					break;
                 case 'glide_gallery':
-					//$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
-					//$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
-                    $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isGallery'] = true;
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
 					break;
 
 				case 'downloads':
