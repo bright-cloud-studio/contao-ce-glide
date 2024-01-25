@@ -110,7 +110,7 @@ $arrFields = array(
 			'sql'                     => "blob NULL",
 			'load_callback' => array
 			(
-				array('tl_content', 'setMultiSrcFlags')
+				array('tl_content_bcs', 'setMultiSrcFlags')
 			)
 		),
 );
