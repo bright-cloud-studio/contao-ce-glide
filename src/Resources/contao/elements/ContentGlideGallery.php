@@ -18,7 +18,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 	/* Generate the content element */
 	public function compile()
 	{
-        /*
+        
         $images = array();
 		$projectDir = \System::getContainer()->getParameter('kernel.project_dir');
 
@@ -197,14 +197,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 		$objTemplate->headline = $this->headline; // see #1603
 		$this->Template->thumbnails = $objTemplate->parse();
         
-        
-        
-        
-        
-        
-
         // Slider configuration
 		$this->Template->config = $this->glide_type . ',' . $this->starting_slide . ',' . $this->slides_to_show . ',' . $this->slide_padding . ',' . $this->autoplay . ',' . $this->pause_on_hover . ',' . $this->ani_duration . ',' . $this->keyboard . ',' . $this->peek;
-	*/
     }
 }
