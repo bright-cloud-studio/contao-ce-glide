@@ -9,7 +9,7 @@
  */
 
 use Contao\Controller;
-/*
+
 // Get our default 'tl_content' DCA
 $dc = &$GLOBALS['TL_DCA']['tl_content'];
 
@@ -107,5 +107,3 @@ $arrFields = array(
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
-
-*/
