@@ -21,9 +21,6 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_gallery'] = '{type_legend},t
 //$GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isGallery'] = true;
 $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isSortable'] = true;
 
-
-
-
 $arrFields = array(
     'glide_type'                => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_content']['glide_type'],
@@ -107,3 +104,32 @@ $arrFields = array(
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
+
+
+class tl_content_bcs extends tl_content
+{
+    public function setMultiSrcFlags($varValue, DataContainer $dc)
+	{
+		if ($dc->activeRecord)
+		{
+			switch ($dc->activeRecord->type)
+			{
+				case 'gallery':
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
+					break;
+                case 'glide_gallery':
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
+					break;
+
+				case 'downloads':
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isDownloads'] = true;
+					$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('allowedDownload');
+					break;
+			}
+		}
+
+		return $varValue;
+	}
+}
