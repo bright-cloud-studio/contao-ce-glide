@@ -17,7 +17,7 @@
 
 
     // Declare both of our new Content Elements as wrappers so we get the cool indenting in Content > Articles
-    $GLOBALS['TL_WRAPPERS']['start'][] = 'glide_start';
-    $GLOBALS['TL_WRAPPERS']['stop'][] = 'glide_stop';
+    //$GLOBALS['TL_WRAPPERS']['start'][] = 'glide_start';
+    //$GLOBALS['TL_WRAPPERS']['stop'][] = 'glide_stop';
 
 ?>
