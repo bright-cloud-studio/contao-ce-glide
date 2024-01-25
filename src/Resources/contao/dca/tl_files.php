@@ -8,6 +8,7 @@
  * @see	       https://github.com/bright-cloud-studio/contao-ce-glide
  */
 
+/*
 use Contao\Controller;
 
 // Get our default 'tl_content' DCA
@@ -37,3 +38,4 @@ $arrFields = array(
 );
 
 //$dc['fields'] = array_merge($dc['fields'], $arrFields);
+*/
