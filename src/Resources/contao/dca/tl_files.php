@@ -41,4 +41,4 @@ $arrFields = array(
         'sql'                      => "varchar(32) NOT NULL default ''"
     )
 );
-//$dc['fields'] = array_merge($dc['fields'], $arrFields);
+$dc['fields'] = array_merge($dc['fields'], $arrFields);
