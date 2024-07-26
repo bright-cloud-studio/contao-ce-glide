@@ -22,4 +22,10 @@ $GLOBALS['TL_LANG']['tl_content']['pause_on_hover']      = array('Pause on Hover
 $GLOBALS['TL_LANG']['tl_content']['ani_duration']        = array('Animation Duration', 'Enter the number in MS for the speed the animation plays');
 $GLOBALS['TL_LANG']['tl_content']['keyboard']            = array('Keyboard Controls', 'Choose if the keyboard should be allowed to control the slides');
 $GLOBALS['TL_LANG']['tl_content']['peek']                = array('Peek', 'Enter the number in pixels of how much to see the previous and next slides');
+$GLOBALS['TL_LANG']['tl_content']['thumb_size']          = array('Thumbnail Size', 'Here you can set the thumbnail dimensions and the resize mode');
 
+/* Frasch Specific */
+$GLOBALS['TL_LANG']['tl_content']['glide_number']        = array('Glide Number', 'Enter the number that displays in the lower right of a gallery thumbnail');
+$GLOBALS['TL_LANG']['tl_content']['glide_name']          = array('Glide Name', 'Enter the name that displays below a gallery thumbnail');
+$GLOBALS['TL_LANG']['tl_content']['glide_new']           = array('Glide New Circle', 'Choose if a thumbnail should be marked as \'NEW\' or not');
+$GLOBALS['TL_LANG']['tl_content']['glide_featured']      = array('Glide Featured', 'Choose if a thumbnail should be marked as \'Featured\' or not');
