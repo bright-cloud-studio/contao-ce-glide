@@ -18,7 +18,7 @@ class ContentGlideGallery extends \Contao\ContentGallery
 	/* Generate the content element */
 	public function compile()
 	{
-        
+
         $images = array();
 		$projectDir = \System::getContainer()->getParameter('kernel.project_dir');
 
@@ -149,6 +149,47 @@ class ContentGlideGallery extends \Contao\ContentGallery
 			->setSize($this->thumb_size)
 			->setLightboxGroupIdentifier('lb' . $this->id)
 			->enableLightbox($this->fullsize);
+
+
+        
+		// Rows
+		/*
+		for ($i=$offset; $i<$limit; $i+=$this->perRow)
+		{
+			// Columns
+			for ($j=0; $j<$this->perRow; $j++)
+			{
+				// Image / empty cell
+				if (($j + $i) < $limit && null !== ($image = $images[$i + $j] ?? null))
+				{
+					$figure = $figureBuilder
+						->fromId($image['id'])
+						->build();
+
+					$cellData = $figure->getLegacyTemplateData();
+					$cellData['figure'] = $figure;
+					
+					$figureThumb = $figureBuilderThumb
+						->fromId($image['id'])
+						->build();
+
+					$cellDataThumb = $figureThumb->getLegacyTemplateData();
+					$cellDataThumb['figure'] = $figureThumb;
+					
+				}
+				else
+				{
+					$cellData = array('addImage' => false);
+				}
+
+				// Add column width
+				$cellData['colWidth'] = $colwidth . '%';
+
+				$body[$i][$j] = (object) $cellData;
+				$bodyThumbs[$i][$j] = (object) $cellDataThumb;
+			}
+		}
+		*/
 		
 		foreach($images as $im) {
 		    $figure = $figureBuilder
@@ -197,7 +238,13 @@ class ContentGlideGallery extends \Contao\ContentGallery
 		$objTemplate->headline = $this->headline; // see #1603
 		$this->Template->thumbnails = $objTemplate->parse();
         
+        
+        
+        
+        
+        
+
         // Slider configuration
 		$this->Template->config = $this->glide_type . ',' . $this->starting_slide . ',' . $this->slides_to_show . ',' . $this->slide_padding . ',' . $this->autoplay . ',' . $this->pause_on_hover . ',' . $this->ani_duration . ',' . $this->keyboard . ',' . $this->peek;
-    }
+	}
 }
