@@ -14,20 +14,27 @@ use Contao\Controller;
 $dc = &$GLOBALS['TL_DCA']['tl_files'];
 $GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = 'name,glide_number,glide_name,glide_new,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta';
 $arrFields = array(
-    'glide_name'            => array(
+    'glide_name'               => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_name'],
         'inputType'                => 'text',
         'eval'                     => array('tl_class'=>'w50'),
         'sql'                      => "varchar(255) BINARY NOT NULL default ''"
     ),
-    'glide_number'            => array(
+    'glide_number'             => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_number'],
         'inputType'                => 'text',
         'eval'                     => array('tl_class'=>'w50'),
         'sql'                      => "varchar(255) BINARY NOT NULL default ''"
     ),
-    'glide_new'            => array(
+    'glide_new'                => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_new'],
+        'inputType'                => 'radio',
+        'options'                  => array('yes' => 'Yes', 'no' => 'No'),
+        'eval'                     => array('tl_class'=>'w50'),
+        'sql'                      => "varchar(32) NOT NULL default ''"
+    ),
+    'glide_featured'            => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_files']['glide_featured'],
         'inputType'                => 'radio',
         'options'                  => array('yes' => 'Yes', 'no' => 'No'),
         'eval'                     => array('tl_class'=>'w50'),
