@@ -17,7 +17,7 @@
 
 $GLOBALS['TL_CTE']['glide']['glide_start'] = 'Bcs\GlideBundle\ContentGlideStart';
 $GLOBALS['TL_CTE']['glide']['glide_stop'] = 'Bcs\GlideBundle\ContentGlideStop';
-$GLOBALS['TL_CTE']['glide']['glide_gallery'] = 'Bcs\GlideBundle\ContentGlideGallery;
+$GLOBALS['TL_CTE']['glide']['glide_gallery'] = 'Bcs\GlideBundle\ContentGlideGallery';
 
 
 
