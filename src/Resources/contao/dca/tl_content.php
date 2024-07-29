@@ -8,6 +8,7 @@
  * @see	       https://github.com/bright-cloud-studio/contao-ce-glide
  */
 
+use Contao\BackendUser;
 use Contao\Config;
 use Contao\Controller;
 use Contao\DataContainer;
