@@ -74,7 +74,7 @@ class ContentGlideGallery extends ContentGallery
 						continue;
 					}
 
-					$objFile = new \File($objSubfiles->path);
+					$objFile = new File($objSubfiles->path);
 
 					if (!$objFile->isImage)
 					{
