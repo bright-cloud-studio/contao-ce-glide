@@ -10,7 +10,9 @@
 
 namespace Bcs\GlideBundle;
 
-class ContentGlideStart extends \ContentText
+use Contao\ContentText;
+
+class ContentGlideStart extends ContentText
 {
 	/* Template @var string */
 	protected $strTemplate = 'ce_glide_start';
