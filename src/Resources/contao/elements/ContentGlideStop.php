@@ -10,7 +10,9 @@
 
 namespace Bcs\GlideBundle;
 
-class ContentGlideStop extends \ContentText
+use Contao\ContentText;
+
+class ContentGlideStop extends ContentText
 {
 
 	/* Template @var string */
