@@ -10,6 +10,7 @@
 
 namespace Bcs\GlideBundle;
 
+use Contao\BackendTemplate;
 use Contao\ContentText;
 use Contao\System;
 
@@ -26,7 +27,7 @@ class ContentGlideStart extends ContentText
 		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
 			$this->strTemplate = 'be_wildcard';
-			$this->Template = new \BackendTemplate($this->strTemplate);
+			$this->Template = new BackendTemplate($this->strTemplate);
 			$this->Template->title = $this->headline;
 		}
 
