@@ -10,7 +10,9 @@
 
 namespace Bcs\GlideBundle;
 
-class ContentGlideGallery extends \Contao\ContentGallery
+use Contao\ContentGallery;
+
+class ContentGlideGallery extends ContentGallery
 {
 	/* Template @var string */
 	protected $strTemplate = 'ce_glide_gallery';
