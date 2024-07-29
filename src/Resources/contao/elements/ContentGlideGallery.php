@@ -15,6 +15,8 @@ use Contao\FilesModel;
 use Contao\FrontendTemplate;
 use Contao\System;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class ContentGlideGallery extends ContentGallery
 {
 	/* Template @var string */
@@ -41,7 +43,7 @@ class ContentGlideGallery extends ContentGallery
 			// Single files
 			if ($objFiles->type == 'file')
 			{
-				$objFile = new \File($objFiles->path);
+				$objFile = new File($objFiles->path);
 
 				if (!$objFile->isImage)
 				{
