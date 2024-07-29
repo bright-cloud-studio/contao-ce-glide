@@ -11,6 +11,7 @@
 namespace Bcs\GlideBundle;
 
 use Contao\ContentGallery;
+use Contao\FilesModel;
 use Contao\FrontendTemplate;
 use Contao\System;
 
@@ -57,7 +58,7 @@ class ContentGlideGallery extends ContentGallery
 			// Folders
 			else
 			{
-				$objSubfiles = \FilesModel::findByPid($objFiles->uuid, array('order' => 'name'));
+				$objSubfiles = FilesModel::findByPid($objFiles->uuid, array('order' => 'name'));
 
 				if ($objSubfiles === null)
 				{
