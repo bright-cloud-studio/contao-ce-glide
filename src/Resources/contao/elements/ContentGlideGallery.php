@@ -11,6 +11,8 @@
 namespace Bcs\GlideBundle;
 
 use Contao\ContentGallery;
+use Contao\FrontendTemplate;
+use Contao\System;
 
 class ContentGlideGallery extends ContentGallery
 {
@@ -22,7 +24,7 @@ class ContentGlideGallery extends ContentGallery
 	{
 
         $images = array();
-		$projectDir = \System::getContainer()->getParameter('kernel.project_dir');
+		$projectDir = System::getContainer()->getParameter('kernel.project_dir');
 
 		$objFiles = $this->objFiles;
 
@@ -138,14 +140,14 @@ class ContentGlideGallery extends ContentGallery
 		$body = array();
 		$bodyThumbs = array();
 
-		$figureBuilder = \System::getContainer()
+		$figureBuilder = System::getContainer()
 			->get('contao.image.studio')
 			->createFigureBuilder()
 			->setSize($this->size)
 			->setLightboxGroupIdentifier('lb' . $this->id)
 			->enableLightbox($this->fullsize);
 			
-		$figureBuilderThumb = \System::getContainer()
+		$figureBuilderThumb = System::getContainer()
 			->get('contao.image.studio')
 			->createFigureBuilder()
 			->setSize($this->thumb_size)
@@ -153,46 +155,6 @@ class ContentGlideGallery extends ContentGallery
 			->enableLightbox($this->fullsize);
 
 
-        
-		// Rows
-		/*
-		for ($i=$offset; $i<$limit; $i+=$this->perRow)
-		{
-			// Columns
-			for ($j=0; $j<$this->perRow; $j++)
-			{
-				// Image / empty cell
-				if (($j + $i) < $limit && null !== ($image = $images[$i + $j] ?? null))
-				{
-					$figure = $figureBuilder
-						->fromId($image['id'])
-						->build();
-
-					$cellData = $figure->getLegacyTemplateData();
-					$cellData['figure'] = $figure;
-					
-					$figureThumb = $figureBuilderThumb
-						->fromId($image['id'])
-						->build();
-
-					$cellDataThumb = $figureThumb->getLegacyTemplateData();
-					$cellDataThumb['figure'] = $figureThumb;
-					
-				}
-				else
-				{
-					$cellData = array('addImage' => false);
-				}
-
-				// Add column width
-				$cellData['colWidth'] = $colwidth . '%';
-
-				$body[$i][$j] = (object) $cellData;
-				$bodyThumbs[$i][$j] = (object) $cellDataThumb;
-			}
-		}
-		*/
-		
 		foreach($images as $im) {
 		    $figure = $figureBuilder
 						->fromId($im['id'])
@@ -220,23 +182,23 @@ class ContentGlideGallery extends ContentGallery
 		$this->Template->tst = $bdy;
 		
 
-		$request = \System::getContainer()->get('request_stack')->getCurrentRequest();
+		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
 		// Always use the default template in the back end
-		if ($request && \System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
 			$this->galleryTpl = '';
 			$this->thumbTpl = '';
 		}
 
-		$objTemplate = new \FrontendTemplate($this->galleryTpl ?: 'gallery_default');
+		$objTemplate = new FrontendTemplate($this->galleryTpl ?: 'gallery_default');
 		$objTemplate->setData($this->arrData);
 		$objTemplate->body = $body;
 		$objTemplate->headline = $this->headline; // see #1603
 		$this->Template->images = $objTemplate->parse();
 		
 		
-		$objTemplate = new \FrontendTemplate($this->thumbTpl ?: 'gallery_glide_thumbnails');
+		$objTemplate = new FrontendTemplate($this->thumbTpl ?: 'gallery_glide_thumbnails');
 		$objTemplate->setData($this->arrData);
 		$objTemplate->body = $bodyThumbs;
 		$objTemplate->headline = $this->headline; // see #1603
