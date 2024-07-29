@@ -10,6 +10,7 @@
 
 namespace Bcs\GlideBundle;
 
+use Contao\ArrayUtil;
 use Contao\ContentGallery;
 use Contao\File;
 use Contao\FilesModel;
@@ -119,7 +120,7 @@ class ContentGlideGallery extends ContentGallery
 				break;
 
 			case 'custom':
-				$images = \ArrayUtil::sortByOrderField($images, $this->orderSRC);
+				$images = ArrayUtil::sortByOrderField($images, $this->orderSRC);
 				break;
 
 			case 'random':
