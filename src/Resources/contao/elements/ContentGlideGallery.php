@@ -11,11 +11,10 @@
 namespace Bcs\GlideBundle;
 
 use Contao\ContentGallery;
+use Contao\File;
 use Contao\FilesModel;
 use Contao\FrontendTemplate;
 use Contao\System;
-
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ContentGlideGallery extends ContentGallery
 {
