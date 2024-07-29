@@ -11,6 +11,7 @@
 namespace Bcs\GlideBundle;
 
 use Contao\ContentText;
+use Contao\System;
 
 class ContentGlideStart extends ContentText
 {
@@ -20,9 +21,9 @@ class ContentGlideStart extends ContentText
 	/* Generate the content element */
 	public function compile()
 	{
-		$request = \System::getContainer()->get('request_stack')->getCurrentRequest();
+		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
-		if ($request && \System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
 			$this->strTemplate = 'be_wildcard';
 			$this->Template = new \BackendTemplate($this->strTemplate);
