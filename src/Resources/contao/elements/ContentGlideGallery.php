@@ -11,6 +11,7 @@
 namespace Bcs\GlideBundle;
 
 use Contao\ArrayUtil;
+use Contao\StringUtil;
 use Contao\ContentGallery;
 use Contao\File;
 use Contao\FilesModel;
@@ -159,9 +160,16 @@ class ContentGlideGallery extends ContentGallery
 
 
 		foreach($images as $im) {
-		    $figure = $figureBuilder
+			if($im['glide_example_img']){
+				$uuid_ex = StringUtil::binToUuid($im['glide_example_img']);
+				$figure = $figureBuilder
+						->fromUuid($uuid_ex)
+						->build();
+			} else {
+		    	$figure = $figureBuilder
 						->fromId($im['id'])
 						->build();
+			}
 			$cellData = $figure->getLegacyTemplateData();
 			$cellData['figure'] = $figure;
 			$cellData['glide_name'] = $im['glide_name'];

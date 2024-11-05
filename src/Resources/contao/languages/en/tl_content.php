@@ -5,7 +5,7 @@
    * @author     Bright Cloud Studio
    * @package    Contao CE Glide
    * @license    LGPL-3.0+
-   * @see	       https://github.com/bright-cloud-studio/contao-ce-glide
+   * @see        https://github.com/bright-cloud-studio/contao-ce-glide
    */
   
 
@@ -29,3 +29,5 @@ $GLOBALS['TL_LANG']['tl_content']['glide_number']        = array('Glide Number',
 $GLOBALS['TL_LANG']['tl_content']['glide_name']          = array('Glide Name', 'Enter the name that displays below a gallery thumbnail');
 $GLOBALS['TL_LANG']['tl_content']['glide_new']           = array('Glide New Circle', 'Choose if a thumbnail should be marked as \'NEW\' or not');
 $GLOBALS['TL_LANG']['tl_content']['glide_featured']      = array('Glide Featured', 'Choose if a thumbnail should be marked as \'Featured\' or not');
+/* Soundseal Specific */
+$GLOBALS['TL_LANG']['tl_content']['glide_example_img']   = array('Glide Example Image', 'Select an image that you wish to override the main image shown when the thumbnail is selected. This is the \'Example\' of the thumbnail image');
