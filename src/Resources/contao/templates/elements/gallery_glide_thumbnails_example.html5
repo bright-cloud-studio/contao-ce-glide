@@ -1,0 +1,12 @@
+<?php $id = 0; ?>
+<?php foreach ($this->body as $img): ?>
+    <?php if ($img->addImage): ?>
+		<button class="glide__bullet thumb-wrapper" data-glide-dir="=<?= $id ?>">
+	        <figure class="image_container"<?php if ($img->margin): ?> style="<?= $img->margin ?>"<?php endif; ?>>
+            	<?php $this->insert('picture_default_glide_example', $img->picture); ?>
+            	<?php if ($img->caption): ?><div class="slide_caption"><?= $img->caption ?></div><?php endif; ?>
+	        </figure>
+		</button>
+      <?php $id++; ?>
+    <?php endif; ?>
+<?php endforeach; ?>

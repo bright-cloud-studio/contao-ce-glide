@@ -1,0 +1,11 @@
+<?php foreach ($this->body as $img): ?>
+    <figure class="image_container">
+      <?php if ($img->href): ?>
+        <a href="<?= $img->href ?>"<?= $img->attributes ?><?php if ($img->linkTitle) echo ' title="' . $img->linkTitle . '"'; ?>><?php if ($img->caption): ?><div class="slide_caption"><?= $img->caption ?></div><?php endif; ?>
+        	<?php $this->insert('picture_default_glide_example', $img->picture); ?></a>
+      <?php else: ?>
+    	<?php if ($img->caption): ?><div class="slide_caption"><?= $img->caption ?></div><?php endif; ?>
+        <?php $this->insert('picture_default_glide_example', $img->picture); ?>
+      <?php endif; ?>
+    </figure>
+<?php endforeach; ?>

@@ -1,0 +1,1 @@
+<img src="<?= $this->img['src'] ?>"<?php if ($this->title) echo ' title="' . $this->title . '"'; ?> itemprop="image" alt="<?= $this->alt ?>">

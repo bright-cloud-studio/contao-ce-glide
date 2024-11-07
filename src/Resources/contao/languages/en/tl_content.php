@@ -13,6 +13,7 @@
 $GLOBALS['TL_LANG']['tl_content']['glide_legend']    = 'Glide Settings';
 
 /* Fields */
+$GLOBALS['TL_LANG']['tl_content']['description']          = array('Description', 'Enter a description.');
 $GLOBALS['TL_LANG']['tl_content']['glide_type']          = array('Glide Type', 'Select the \'type\' setting for Glide');
 $GLOBALS['TL_LANG']['tl_content']['starting_slide']      = array('Starting Slide', 'Enter the number for which slide to start at');
 $GLOBALS['TL_LANG']['tl_content']['slides_to_show']      = array('Slides to Show', 'Enter the number for how many slides to show');
