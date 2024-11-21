@@ -24,9 +24,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isSortable'] = t
 $arrFields = array(
     'description'                => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_content']['description'],
+    	'exclude'				 => true,
+	    'inputType'				 => 'textarea',
+	    'search'				 => true,
 		'eval'                     => array('style'=>'height:60px', 'rte'=>'tinyMCE', 'tl_class'=>'clr long'),
 		'explanation'  			 => 'insertTags',
     	'sql'					 => "text NULL"
+    	
+
     ),
     'glide_type'                => array(
         'label'                    => &$GLOBALS['TL_LANG']['tl_content']['glide_type'],
