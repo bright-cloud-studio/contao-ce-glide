@@ -160,18 +160,17 @@ class ContentGlideGallery extends ContentGallery
 
 
 		foreach($images as $im) {
+
+		    
 			if($im['glide_example_img']){
 				// $im_ex = $im['glide_example_img'];
 				$uuid_ex = StringUtil::binToUuid($im['glide_example_img']);
-				// $objFile_ex = FilesModel::findByUuid($uuid_ex);
-				// 	if ($objFile_ex) {
-				// 		$strPhoto_ex = $objFile_ex->path;
-				// 	}
-				
-				
-				$figure = $figureBuilder
+				$objFile_ex = FilesModel::findByUuid($uuid_ex);
+				if ($objFile_ex) {
+						$figure = $figureBuilder
 						->fromUuid($uuid_ex)
 						->build();
+					}
 			} else {
 		    	$figure = $figureBuilder
 						->fromId($im['id'])
