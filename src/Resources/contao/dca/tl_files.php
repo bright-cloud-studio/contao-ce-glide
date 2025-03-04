@@ -18,9 +18,13 @@ $dc = &$GLOBALS['TL_DCA']['tl_files'];
 $GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = 'name,glide_number,glide_name,glide_new,glide_featured,glide_example_img,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta';
 
 // Retrieve the valid image types in a backward-compatible way
-$validImageTypes = class_exists(System::class) 
-    ? System::getConfig()->get('validImageTypes') // Contao 5.x
-    : Config::get('validImageTypes'); // Contao 4.13
+if (class_exists(System::class)) {
+    // Contao 5.x - Use Dependency Injection Container
+    $validImageTypes = System::getContainer()->get('contao.config')->get('validImageTypes');
+} else {
+    // Contao 4.13 - Use old Config::get() method
+    $validImageTypes = Config::get('validImageTypes');
+}
 
 $arrFields = array(
     'glide_name' => array(
