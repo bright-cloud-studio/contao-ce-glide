@@ -9,6 +9,7 @@
  */
 
 use Contao\Controller;
+use Contao\DataContainer;
 
 // Get our default 'tl_content' DCA
 $dc = &$GLOBALS['TL_DCA']['tl_content'];
