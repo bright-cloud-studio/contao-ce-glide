@@ -44,28 +44,50 @@ $arrFields = array(
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
     ),
-    'slides_to_show' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slides_to_show'],
+    'pause_on_hover' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['pause_on_hover'],
+        'inputType'    => 'select',
+        'options'      => array('true' => 'True', 'false' => 'False'),
+        'eval'         => array('mandatory'=>true, 'tl_class'=>'w50'),
+        'sql'          => "varchar(32) NOT NULL default 'true'"
+    ),
+    'ani_duration' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['ani_duration'],
         'inputType'    => 'text',
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
     ),
-    'slide_padding' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slide_padding'],
+    'keyboard' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['keyboard'],
+        'inputType'    => 'select',
+        'options'      => array('true' => 'True', 'false' => 'False'),
+        'eval'         => array('mandatory'=>true, 'tl_class'=>'w50'),
+        'sql'          => "varchar(32) NOT NULL default 'true'"
+    ),
+    'peek' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['peek'],
         'inputType'    => 'text',
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
     ),
-    'multiSRC' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
-        'exclude'      => true,
-        'inputType'    => 'fileTree',
-        'eval'         => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'mandatory'=>true),
-        'sql'          => "blob NULL",
-        'load_callback' => array(
-            array('tl_content_bcs', 'setMultiSrcFlags')
-        )
+    'thumb_size' => array(
+        'label'        => &$GLOBALS['TL_LANG']['MSC']['thumb_size'],
+        'inputType'    => 'imageSize',
+        'reference'    => &$GLOBALS['TL_LANG']['MSC'],
+        'options_callback' => static function () {
+            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+        },
+        'eval'         => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
+        'sql'          => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
     ),
+    'thumb_template' => array(
+        'inputType'    => 'select',
+        'options_callback' => static function () {
+            return Controller::getTemplateGroup('gallery_');
+        },
+        'eval'         => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
+        'sql'          => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
+    )
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
