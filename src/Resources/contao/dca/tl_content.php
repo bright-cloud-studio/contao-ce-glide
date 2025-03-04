@@ -129,6 +129,17 @@ class tl_content_bcs extends tl_content
         if ($dc->activeRecord) {
             switch ($dc->activeRecord->type) {
                 case 'gallery':
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+                    
+                    // Use Contao 5.3 method if available, fallback to Contao 4.13
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('validImageTypes'); // Contao 4.13
+                    }
+                    break;
                 case 'glide_gallery':
                     $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
                     
