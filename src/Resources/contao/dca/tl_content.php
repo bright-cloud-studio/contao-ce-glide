@@ -117,7 +117,19 @@ $arrFields = array(
         },
         'eval'         => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
         'sql'          => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
-    )
+    ),
+    'multiSRC' => array
+    (
+        'label'                   => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
+        'exclude'                 => true,
+        'inputType'               => 'fileTree',
+        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'mandatory'=>true),
+        'sql'                     => "blob NULL",
+        'load_callback' => array
+        (
+            array('tl_content_bcs', 'setMultiSrcFlags')
+        )
+    ),
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
