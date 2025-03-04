@@ -19,8 +19,8 @@ $GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = 'name,glide_number,glide
 
 // Retrieve the valid image types in a backward-compatible way
 if (class_exists(System::class)) {
-    // Contao 5.x - Use Dependency Injection Container
-    $validImageTypes = System::getContainer()->get('contao.config')->get('validImageTypes');
+    // Contao 5.x - Use the parameter system (config is stored in parameters)
+    $validImageTypes = System::getContainer()->getParameter('contao.image.valid_extensions');
 } else {
     // Contao 4.13 - Use old Config::get() method
     $validImageTypes = Config::get('validImageTypes');
