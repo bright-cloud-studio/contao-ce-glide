@@ -44,6 +44,25 @@ $arrFields = array(
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
     ),
+    'slides_to_show'            => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['slides_to_show'],
+        'inputType'                => 'text',
+		'eval'                     => array('tl_class'=>'w50'),
+		'sql'                      => "varchar(12) NOT NULL default ''"
+    ),
+    'slide_padding'            => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['slide_padding'],
+        'inputType'                => 'text',
+		'eval'                     => array('tl_class'=>'w50'),
+		'sql'                      => "varchar(12) NOT NULL default ''"
+    ),
+    'autoplay'                => array(
+        'label'                    => &$GLOBALS['TL_LANG']['tl_content']['autoplay'],
+        'inputType'                => 'select',
+		'options'                  => array('false' => 'False', '500' => '500ms', '1000' => '1000ms', '1500' => '1500ms', '2000' => '2000ms', '2500' => '2500ms', '3000' => '3000ms'),
+		'eval'                     => array('mandatory'=>true, 'tl_class'=>'w50'),
+		'sql'                      => "varchar(32) NOT NULL default 'false'"
+    ),
     'pause_on_hover' => array(
         'label'        => &$GLOBALS['TL_LANG']['tl_content']['pause_on_hover'],
         'inputType'    => 'select',
