@@ -27,9 +27,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isSortable'] = t
 $arrFields = array(
     'description' => array(
         'label'        => &$GLOBALS['TL_LANG']['tl_content']['description'],
-        'exclude'      => true,
-        'inputType'    => 'textarea',
-        'search'       => true,
         'eval'         => array('style'=>'height:60px', 'rte'=>'tinyMCE', 'tl_class'=>'clr long'),
         'explanation'  => 'insertTags',
         'sql'          => "text NULL"
@@ -46,25 +43,6 @@ $arrFields = array(
         'inputType'    => 'text',
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
-    ),
-    'slides_to_show' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slides_to_show'],
-        'inputType'    => 'text',
-        'eval'         => array('tl_class'=>'w50'),
-        'sql'          => "varchar(12) NOT NULL default ''"
-    ),
-    'slide_padding' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slide_padding'],
-        'inputType'    => 'text',
-        'eval'         => array('tl_class'=>'w50'),
-        'sql'          => "varchar(12) NOT NULL default ''"
-    ),
-    'autoplay' => array(
-        'label'        => &$GLOBALS['TL_LANG']['tl_content']['autoplay'],
-        'inputType'    => 'select',
-        'options'      => array('false' => 'False', '500' => '500ms', '1000' => '1000ms', '1500' => '1500ms', '2000' => '2000ms', '2500' => '2500ms', '3000' => '3000ms'),
-        'eval'         => array('mandatory'=>true, 'tl_class'=>'w50'),
-        'sql'          => "varchar(32) NOT NULL default 'false'"
     ),
     'multiSRC' => array(
         'label'        => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
@@ -90,20 +68,26 @@ class tl_content_bcs extends tl_content
                 case 'glide_gallery':
                     $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
                     
-                    // Use Contao 5.x method if available, fallback to Contao 4.13
-                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
-                        class_exists(System::class) 
-                            ? System::getContainer()->getParameter('validImageTypes') 
-                            : Config::get('validImageTypes');
+                    // Use Contao 5.3 method if available, fallback to Contao 4.13
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('validImageTypes'); // Contao 4.13
+                    }
                     break;
 
                 case 'downloads':
                     $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isDownloads'] = true;
                     
-                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
-                        class_exists(System::class) 
-                            ? System::getContainer()->getParameter('allowedDownload') 
-                            : Config::get('allowedDownload');
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            System::getContainer()->getParameter('contao.upload.valid_extensions'); // Contao 5.3
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('allowedDownload'); // Contao 4.13
+                    }
                     break;
             }
         }
