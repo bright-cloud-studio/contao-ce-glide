@@ -44,6 +44,18 @@ $arrFields = array(
         'eval'         => array('tl_class'=>'w50'),
         'sql'          => "varchar(12) NOT NULL default ''"
     ),
+    'slides_to_show' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slides_to_show'],
+        'inputType'    => 'text',
+        'eval'         => array('tl_class'=>'w50'),
+        'sql'          => "varchar(12) NOT NULL default ''"
+    ),
+    'slide_padding' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_content']['slide_padding'],
+        'inputType'    => 'text',
+        'eval'         => array('tl_class'=>'w50'),
+        'sql'          => "varchar(12) NOT NULL default ''"
+    ),
     'multiSRC' => array(
         'label'        => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
         'exclude'      => true,
