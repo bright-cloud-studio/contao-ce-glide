@@ -94,15 +94,26 @@ $arrFields = array(
         'inputType'    => 'imageSize',
         'reference'    => &$GLOBALS['TL_LANG']['MSC'],
         'options_callback' => static function () {
-            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+            if (class_exists(System::class)) {
+                // Contao 5.3
+                return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(
+                    System::getContainer()->get('security.helper')->getUser()
+                );
+            } else {
+                // Contao 4.13
+                return System::getImageSizes();
+            }
         },
         'eval'         => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
         'sql'          => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
     ),
+    
     'thumb_template' => array(
         'inputType'    => 'select',
         'options_callback' => static function () {
-            return Controller::getTemplateGroup('gallery_');
+            return method_exists(Controller::class, 'getTemplateGroup') 
+                ? Controller::getTemplateGroup('gallery_') // Works in both Contao 4.13 & 5.3
+                : [];
         },
         'eval'         => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
         'sql'          => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
