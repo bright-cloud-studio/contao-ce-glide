@@ -10,7 +10,6 @@
 
 use Contao\Controller;
 use Contao\DataContainer;
-use Contao\Database;
 use Contao\System;
 use Contao\Config; // Needed for Contao 4.13
 
@@ -22,8 +21,8 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_stop'] = '{type_legend},type
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['glide_gallery'] = '{type_legend},type,headline,description;{source_legend},multiSRC,useHomeDir,sortBy,metaIgnore;{image_legend},size,thumb_size,fullsize;{glide_legend},glide_type,autoplay,slides_to_show,starting_slide,slide_padding,peek,pause_on_hover,ani_duration,keyboard;{template_legend:hide},galleryTpl,thumb_template,customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 
-// $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isGallery'] = true;
-// $GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isSortable'] = true;
+//$GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isGallery'] = true;
+$GLOBALS['TL_DCA']['tl_content']['fields']['multiSRC']['eval']['isSortable'] = true;
 
 $arrFields = array(
     'description' => array(
@@ -95,8 +94,15 @@ $arrFields = array(
         'inputType'    => 'imageSize',
         'reference'    => &$GLOBALS['TL_LANG']['MSC'],
         'options_callback' => static function () {
-                return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(System::getContainer()->get('security.helper')->getUser()
+            if (class_exists(System::class)) {
+                // Contao 5.3
+                return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(
+                    System::getContainer()->get('security.helper')->getUser()
                 );
+            } else {
+                // Contao 4.13
+                return System::getImageSizes();
+            }
         },
         'eval'         => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50 clr'),
         'sql'          => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
@@ -117,18 +123,13 @@ $arrFields = array(
         'label'                   => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
         'exclude'                 => true,
         'inputType'               => 'fileTree',
-        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'isSortable' => true, 'mandatory'=>true),
+        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'mandatory'=>true),
         'sql'                     => "blob NULL",
         'load_callback' => array
         (
             array('tl_content_bcs', 'setMultiSrcFlags')
         )
     ),
-	'orderSRC' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['orderSRC'],
-			'sql'                     => "blob NULL"
-	),
 );
 
 $dc['fields'] = array_merge($dc['fields'], $arrFields);
@@ -137,32 +138,45 @@ class tl_content_bcs extends tl_content
 {
     public function setMultiSrcFlags($varValue, DataContainer $dc)
     {
-
-            if ($dc->activeRecord && isset($dc->activeRecord->type)) {
-                if (!is_string($dc->activeRecord->type)) {
-                    \Contao\System::log('Unexpected type: ' . gettype($dc->activeRecord->type), __METHOD__, TL_ERROR);
-                }
-                $type = (string) $dc->activeRecord->type;
-            
-                switch ($type) {
-                    case 'gallery':
-                            $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
-                            $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
-                            // $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
-                        break;
-                    case 'glide_gallery':
+        if ($dc->activeRecord) {
+            switch ($dc->activeRecord->type) {
+                case 'gallery':
                         $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
-                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
-                        
-                            // $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
-                        break;
-    
-                    case 'downloads':
-                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isDownloads'] = true;
-                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('allowedDownload');
-                            // $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = System::getContainer()->getParameter('contao.upload.valid_extensions'); // Contao 5.3
-                        break;
-                }
+                    
+                    // Use Contao 5.3 method if available, fallback to Contao 4.13
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('validImageTypes'); // Contao 4.13
+                    }
+                    break;
+                case 'glide_gallery':
+                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+                    
+                    // Use Contao 5.3 method if available, fallback to Contao 4.13
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            System::getContainer()->getParameter('contao.image.valid_extensions'); // Contao 5.3
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('validImageTypes'); // Contao 4.13
+                    }
+                    break;
+
+                case 'downloads':
+                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isDownloads'] = true;
+                    
+                    if (class_exists(System::class)) {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('validImageTypes'); // Contao 4.13
+                    } else {
+                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                            Config::get('allowedDownload'); // Contao 4.13
+                    }
+                    break;
+            }
         }
 
         return $varValue;
