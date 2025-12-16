@@ -123,7 +123,7 @@ $arrFields = array(
         'label'                   => &$GLOBALS['TL_LANG']['tl_content']['multiSRC'],
         'exclude'                 => true,
         'inputType'               => 'fileTree',
-        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'mandatory'=>true),
+        'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'isSortable' => true, 'files'=>true, 'mandatory'=>true),
         'sql'                     => "blob NULL",
         'load_callback' => array
         (
