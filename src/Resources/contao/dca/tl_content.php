@@ -167,15 +167,14 @@ class tl_content_bcs extends tl_content
 
                 case 'downloads':
                     $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isDownloads'] = true;
-                    
-                    if (class_exists(System::class)) {
-                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
-                            Config::get('validImageTypes'); // Contao 4.13
-                    } else {
-                        $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
-                            Config::get('allowedDownload'); // Contao 4.13
-                    }
+                
+                    // Contao 5.3: Download extensions come from tl_settings.allowedDownload
+                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] =
+                        Config::get('allowedDownload');
+                
                     break;
+
+
             }
         }
 
