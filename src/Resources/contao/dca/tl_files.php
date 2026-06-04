@@ -15,7 +15,7 @@ use Contao\System; // Needed for Contao 5.x
 // Get our default 'tl_files' DCA
 $dc = &$GLOBALS['TL_DCA']['tl_files'];
 
-$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = '{file_settings_legend}, preview, name, protected, syncExclude, importantPartX, importantPartY, importantPartWidth, importantPartHeight; meta; {glide_settings_legend}, glide_number, glide_name; {glide_new_settings_legned}, glide_new; {glide_featured_settings_legend}, glide_featured; {glide_example_settings_legend}, glide_example_img;';
+$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = '{file_settings}, preview, name, protected, syncExclude, importantPartX, importantPartY, importantPartWidth, importantPartHeight; meta; {glide_settings}, glide_number, glide_name; {glide_new_settings}, glide_new; {glide_featured_settings}, glide_featured; {glide_example_settings}, glide_example_img;';
 
 // Retrieve the valid image types in a backward-compatible way
 if (class_exists(System::class)) {
