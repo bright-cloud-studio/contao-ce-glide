@@ -16,7 +16,7 @@ use Contao\System; // Needed for Contao 5.x
 $dc = &$GLOBALS['TL_DCA']['tl_files'];
 
 //$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = '{file_settings}, preview, name, protected, syncExclude, importantPartX, importantPartY, importantPartWidth, importantPartHeight; meta; {glide_settings}, glide_number, glide_name; {glide_new_settings}, glide_new; {glide_featured_settings}, glide_featured; {glide_example_settings}, glide_example_img;';
-$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = '{file_settings_legend},preview,name,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta;{glide_settings_legend},glide_number,glide_name;{glide_new_settings_legend},glide_new;{glide_featured_settings_legend},glide_featured;{glide_example_settings_legend},glide_example_img;';
+$GLOBALS['TL_DCA']['tl_files']['palettes']['default'] = '{file_settings_legend},preview,name,protected,syncExclude,importantPartX,importantPartY,importantPartWidth,importantPartHeight;meta;{glide_settings_legend},glide_number,glide_name;{glide_new_settings_legend},glide_new; {glide_in_stock_settings_legend},glide_in_stock; {glide_featured_settings_legend},glide_featured;{glide_example_settings_legend},glide_example_img;';
 
 // Retrieve the valid image types in a backward-compatible way
 if (class_exists(System::class)) {
@@ -47,6 +47,15 @@ $arrFields = array(
         'eval'         => array('tl_class' => 'w50'),
         'sql'          => "varchar(32) NOT NULL default ''"
     ),
+
+    'glide_in_stock' => array(
+        'label'        => &$GLOBALS['TL_LANG']['tl_files']['glide_in_stock'],
+        'inputType'    => 'radio',
+        'options'      => array('yes' => 'Yes', 'no' => 'No'),
+        'eval'         => array('tl_class' => 'w50'),
+        'sql'          => "varchar(32) NOT NULL default ''"
+    ),
+    
     'glide_featured' => array(
         'label'        => &$GLOBALS['TL_LANG']['tl_files']['glide_featured'],
         'inputType'    => 'radio',
