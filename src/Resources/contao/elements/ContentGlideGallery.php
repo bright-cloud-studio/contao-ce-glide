@@ -181,6 +181,7 @@ class ContentGlideGallery extends ContentGallery
 			$cellData['glide_name'] = $im['glide_name'];
 			$cellData['glide_number'] = $im['glide_number'];
 			$cellData['glide_new'] = $im['glide_new'];
+            $cellData['glide_in_stock'] = $im['glide_in_stock'];
             $cellData['glide_featured'] = $im['glide_featured'];
 		    $body[] = (object) $cellData;
 		    
@@ -192,6 +193,7 @@ class ContentGlideGallery extends ContentGallery
 			$cellDataThumb['glide_name'] = $im['glide_name'];
 			$cellDataThumb['glide_number'] = $im['glide_number'];
 			$cellDataThumb['glide_new'] = $im['glide_new'];
+            $cellDataThumb['glide_in_stock'] = $im['glide_in_stock'];
             $cellDataThumb['glide_featured'] = $im['glide_featured'];
 			$bodyThumbs[] = (object) $cellDataThumb;
 		    
