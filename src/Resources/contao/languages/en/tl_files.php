@@ -12,6 +12,10 @@ $GLOBALS['TL_LANG']['tl_files']['glide_name']          = array('Glide Name', 'En
 $GLOBALS['TL_LANG']['tl_files']['glide_new_settings_legend']   = 'Glide - New - Settings';
 $GLOBALS['TL_LANG']['tl_files']['glide_new']           = array('Glide New Circle', 'Choose if a thumbnail should be marked as \'NEW\' or not');
 
+/* Settings for 'In Stock' */
+$GLOBALS['TL_LANG']['tl_files']['glide_in_stock_settings_legend']   = 'Glide - In Stock - Settings';
+$GLOBALS['TL_LANG']['tl_files']['glide_in_stock']           = array('Glide In Stock Circle', 'Choose if a thumbnail should be marked as \'In Stock\' or not');
+
 /* Settings for 'Featured' */
 $GLOBALS['TL_LANG']['tl_files']['glide_featured_settings_legend']   = 'Glide - Featured - Settings';
 $GLOBALS['TL_LANG']['tl_files']['glide_featured']      = array('Glide Featured', 'Choose if a thumbnail should be marked as \'Featured\' or not');
