@@ -196,10 +196,9 @@ class ContentGlideGallery extends ContentGallery
             $cellDataThumb['glide_in_stock'] = $im['glide_in_stock'];
             $cellDataThumb['glide_featured'] = $im['glide_featured'];
 			$bodyThumbs[] = (object) $cellDataThumb;
-		    
+
 		}
-		$this->Template->tst = $bdy;
-		
+
 
 		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
